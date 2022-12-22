@@ -11,20 +11,25 @@ object AppImplementaion {
         AppLib.COMPOSE_WINDOW_SIZE,
         AppLib.COMPOSE_ACTIVITIES,
         AppLib.COMPOSE_VIEWMODEL,
+        AppLib.HILT_ANDROID,
     )
 
-    val UNIT_TEST_LIBS = listOf(
+    val APP_UNIT_TEST_LIBS = listOf(
         AppLib.JUNIT,
     )
 
-    val INSTRUMENT_TEST_LIBS = listOf(
+    val APP_INSTRUMENT_TEST_LIBS = listOf(
         AppLib.JUNIT_EXT,
         AppLib.ESPRESSO,
         AppLib.COMPOSE_UI_TEST
     )
 
-    val DEBUG_LIBS = listOf(
+    val APP_DEBUG_LIBS = listOf(
         AppLib.COMPOSE_UI_TOOLING,
         AppLib.COMPOSE_UI_TEST_MANIFEST,
+    )
+
+    val APP_KAPT_LIBS = listOf(
+        AppLib.HILT_ANDROID_COMPILER,
     )
 }

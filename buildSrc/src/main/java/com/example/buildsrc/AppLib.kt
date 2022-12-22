@@ -15,7 +15,10 @@ object AppLib {
     const val COMPOSE_ICON = "androidx.compose.material:material-icons-extended"
     const val COMPOSE_WINDOW_SIZE = "androidx.compose.material3:material3-window-size-class"
     const val COMPOSE_ACTIVITIES =
-        "androidx.activity:activity-compose:${AppVersion.COMPOSE_ACTIVITIES}"
+        "androidx.activity:activity-compose:${AppVersion.COMPOSE_ACTIVITIES_VERSION}"
     const val COMPOSE_VIEWMODEL =
-        "androidx.lifecycle:lifecycle-viewmodel-compose:${AppVersion.COMPOSE_VIEWMODEL}"
+        "androidx.lifecycle:lifecycle-viewmodel-compose:${AppVersion.COMPOSE_VIEWMODEL_VERSION}"
+    const val HILT_ANDROID = "com.google.dagger:hilt-android:${AppVersion.HILT_ANDROID_VERSION}"
+    const val HILT_ANDROID_COMPILER =
+        "com.google.dagger:hilt-android-compiler:${AppVersion.HILT_ANDROID_VERSION}"
 }

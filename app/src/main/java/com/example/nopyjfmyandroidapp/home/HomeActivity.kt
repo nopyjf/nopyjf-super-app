@@ -2,29 +2,37 @@ package com.example.nopyjfmyandroidapp.home
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.nopyjfmyandroidapp.action.HomeAction
+import com.example.nopyjfmyandroidapp.model.HomeItemDisplay
 import com.example.nopyjfmyandroidapp.theme.AppTheme
-import com.example.nopyjfmyandroidapp.theme.DarkTheme
+import com.example.nopyjfmyandroidapp.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +44,26 @@ class HomeActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun HomeScreen() {
+private fun HomeScreen(
+    viewModel: HomeViewModel = viewModel()
+) {
+    val action = viewModel.state.collectAsState()
+    viewModel.getItems()
+
     AppTheme {
         Scaffold(
             topBar = { HomeTopAppBar() }
         ) { padding ->
-            HomeContent(padding)
+            when (action.value) {
+                is HomeAction.Success -> {
+                    val items = action.value.data.items
+                    HomeContent(padding, items)
+                }
+                is HomeAction.Idle -> {
+                    CircularProgressIndicator()
+                }
+            }
+
         }
     }
 }
@@ -59,6 +81,7 @@ private fun HomeTopAppBar() {
 @Composable
 private fun HomeContent(
     padding: PaddingValues,
+    items: List<HomeItemDisplay>,
 ) {
     Surface(
         modifier = Modifier
@@ -66,10 +89,25 @@ private fun HomeContent(
             .padding(padding)
             .padding(8.dp)
     ) {
-        Column {
-            // HomeItemList()
-            HomeAddButton()
+        LazyColumn {
+            items(items.size) { index ->
+                HomeItem(items[index])
+            }
+            item { HomeAddButton() }
         }
+    }
+}
+
+@Composable
+private fun HomeItem(
+    data: HomeItemDisplay,
+) {
+    Column(
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Text(text = data.title)
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(text = data.proteinWeight.toString())
     }
 }
 
@@ -77,17 +115,14 @@ private fun HomeContent(
 private fun HomeAddButton() {
     Button(
         onClick = {
-            updateValue()
+            // do nothing
         },
         modifier = Modifier
             .fillMaxWidth()
+            .padding(top = 8.dp)
     ) {
         Text(text = "Add")
     }
-}
-
-private fun updateValue() {
-    Log.d("TEST", "TEST_D")
 }
 
 @Composable

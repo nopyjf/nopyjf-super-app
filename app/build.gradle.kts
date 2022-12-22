@@ -1,16 +1,20 @@
 import com.example.buildsrc.AppImplementaion.APP_LIBS
-import com.example.buildsrc.AppImplementaion.DEBUG_LIBS
-import com.example.buildsrc.AppImplementaion.INSTRUMENT_TEST_LIBS
-import com.example.buildsrc.AppImplementaion.UNIT_TEST_LIBS
+import com.example.buildsrc.AppImplementaion.APP_DEBUG_LIBS
+import com.example.buildsrc.AppImplementaion.APP_INSTRUMENT_TEST_LIBS
+import com.example.buildsrc.AppImplementaion.APP_KAPT_LIBS
+import com.example.buildsrc.AppImplementaion.APP_UNIT_TEST_LIBS
 import com.example.buildsrc.AppLib.COMPOSE
 import com.example.buildsrc.androidTestImplementations
 import com.example.buildsrc.debugImplementations
 import com.example.buildsrc.implementations
+import com.example.buildsrc.kapts
 import com.example.buildsrc.testImplementations
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
@@ -55,11 +59,16 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementations(APP_LIBS)
-    testImplementations(UNIT_TEST_LIBS)
-    androidTestImplementations(INSTRUMENT_TEST_LIBS)
-    debugImplementations(DEBUG_LIBS)
+    testImplementations(APP_UNIT_TEST_LIBS)
+    androidTestImplementations(APP_INSTRUMENT_TEST_LIBS)
+    debugImplementations(APP_DEBUG_LIBS)
+    kapts(APP_KAPT_LIBS)
 
     implementation(platform(COMPOSE))
     androidTestImplementation(platform(COMPOSE))
