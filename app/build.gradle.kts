@@ -1,7 +1,10 @@
 import com.example.buildsrc.AppImplementaion.APP_LIBS
+import com.example.buildsrc.AppImplementaion.DEBUG_LIBS
 import com.example.buildsrc.AppImplementaion.INSTRUMENT_TEST_LIBS
 import com.example.buildsrc.AppImplementaion.UNIT_TEST_LIBS
+import com.example.buildsrc.AppLib.COMPOSE
 import com.example.buildsrc.androidTestImplementations
+import com.example.buildsrc.debugImplementations
 import com.example.buildsrc.implementations
 import com.example.buildsrc.testImplementations
 
@@ -33,16 +36,20 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.3.2"
     }
@@ -52,4 +59,8 @@ dependencies {
     implementations(APP_LIBS)
     testImplementations(UNIT_TEST_LIBS)
     androidTestImplementations(INSTRUMENT_TEST_LIBS)
+    debugImplementations(DEBUG_LIBS)
+
+    implementation(platform(COMPOSE))
+    androidTestImplementation(platform(COMPOSE))
 }

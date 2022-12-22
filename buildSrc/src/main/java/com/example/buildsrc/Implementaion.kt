@@ -32,3 +32,9 @@ fun DependencyHandler.implementationProjects(list: List<String>) {
         add("implementation", project(dependency))
     }
 }
+
+fun DependencyHandler.debugImplementations(list: List<String>) {
+    list.forEach { dependency ->
+        add("debugImplementation", dependency)
+    }
+}

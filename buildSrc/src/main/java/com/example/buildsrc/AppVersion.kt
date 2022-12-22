@@ -7,4 +7,6 @@ object AppVersion {
     const val JUNIT_VERSION = "4.13.2"
     const val JUNIT_EXT_VERSION = "1.1.3"
     const val ESPRESSO_VERSION = "3.5.0"
+    const val COMPOSE_ACTIVITIES = "1.5.1"
+    const val COMPOSE_VIEWMODEL = "2.5.1"
 }
