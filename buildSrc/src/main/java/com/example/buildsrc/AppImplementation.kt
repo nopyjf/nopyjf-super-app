@@ -1,17 +1,19 @@
 package com.example.buildsrc
 
-object AppImplementaion {
+object AppImplementation {
 
     val APP_LIBS = listOf(
         AppLib.APP_COMPAT,
         AppLib.MATERIAL,
-        AppLib.MATERIAL_YOU,
+        AppLib.COMPOSE_MATERIAL_YOU,
         AppLib.COMPOSE_PREVIEW,
         AppLib.COMPOSE_ICON,
         AppLib.COMPOSE_WINDOW_SIZE,
         AppLib.COMPOSE_ACTIVITIES,
         AppLib.COMPOSE_VIEWMODEL,
         AppLib.HILT_ANDROID,
+        AppLib.ROOM,
+        AppLib.ROOM_COROUTINE,
     )
 
     val APP_UNIT_TEST_LIBS = listOf(
@@ -31,5 +33,10 @@ object AppImplementaion {
 
     val APP_KAPT_LIBS = listOf(
         AppLib.HILT_ANDROID_COMPILER,
+        AppLib.ROOM_COMPILER,
+    )
+
+    val APP_ANNOTATION_LIBS = listOf(
+        AppLib.ROOM_COMPILER,
     )
 }

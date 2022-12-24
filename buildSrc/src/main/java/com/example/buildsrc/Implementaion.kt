@@ -38,3 +38,9 @@ fun DependencyHandler.debugImplementations(list: List<String>) {
         add("debugImplementation", dependency)
     }
 }
+
+fun DependencyHandler.annotationProcessors(list: List<String>) {
+    list.forEach { dependency ->
+        add("annotationProcessor", dependency)
+    }
+}

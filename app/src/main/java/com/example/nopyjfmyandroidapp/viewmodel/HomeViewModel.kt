@@ -2,8 +2,8 @@ package com.example.nopyjfmyandroidapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.nopyjfmyandroidapp.action.HomeAction
-import com.example.nopyjfmyandroidapp.model.HomeDisplay
-import com.example.nopyjfmyandroidapp.model.HomeItemDisplay
+import com.example.nopyjfmyandroidapp.display.HomeDisplay
+import com.example.nopyjfmyandroidapp.display.HomeItemDisplay
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -40,10 +40,11 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     }
 
     fun addItem(item: HomeItemDisplay) {
-        // Add new item into list
         _state.update {
-            it.getItems().add(item)
+            getItems().add(item)
             HomeAction.AddItemSuccess(data = it.data)
         }
     }
+
+    fun getItems(): ArrayList<HomeItemDisplay> = _state.value.data.items
 }

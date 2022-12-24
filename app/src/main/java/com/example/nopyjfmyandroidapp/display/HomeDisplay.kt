@@ -1,4 +1,4 @@
-package com.example.nopyjfmyandroidapp.model
+package com.example.nopyjfmyandroidapp.display
 
 data class HomeDisplay(
     val items: ArrayList<HomeItemDisplay> = arrayListOf()

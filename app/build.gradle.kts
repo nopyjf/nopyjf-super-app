@@ -1,10 +1,12 @@
-import com.example.buildsrc.AppImplementaion.APP_LIBS
-import com.example.buildsrc.AppImplementaion.APP_DEBUG_LIBS
-import com.example.buildsrc.AppImplementaion.APP_INSTRUMENT_TEST_LIBS
-import com.example.buildsrc.AppImplementaion.APP_KAPT_LIBS
-import com.example.buildsrc.AppImplementaion.APP_UNIT_TEST_LIBS
+import com.example.buildsrc.AppImplementation.APP_ANNOTATION_LIBS
+import com.example.buildsrc.AppImplementation.APP_LIBS
+import com.example.buildsrc.AppImplementation.APP_DEBUG_LIBS
+import com.example.buildsrc.AppImplementation.APP_INSTRUMENT_TEST_LIBS
+import com.example.buildsrc.AppImplementation.APP_KAPT_LIBS
+import com.example.buildsrc.AppImplementation.APP_UNIT_TEST_LIBS
 import com.example.buildsrc.AppLib.COMPOSE
 import com.example.buildsrc.androidTestImplementations
+import com.example.buildsrc.annotationProcessors
 import com.example.buildsrc.debugImplementations
 import com.example.buildsrc.implementations
 import com.example.buildsrc.kapts
@@ -69,6 +71,7 @@ dependencies {
     androidTestImplementations(APP_INSTRUMENT_TEST_LIBS)
     debugImplementations(APP_DEBUG_LIBS)
     kapts(APP_KAPT_LIBS)
+    annotationProcessors(APP_ANNOTATION_LIBS)
 
     implementation(platform(COMPOSE))
     androidTestImplementation(platform(COMPOSE))

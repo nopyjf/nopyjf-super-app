@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.nopyjfmyandroidapp.action.HomeAction
-import com.example.nopyjfmyandroidapp.model.HomeItemDisplay
+import com.example.nopyjfmyandroidapp.display.HomeItemDisplay
 import com.example.nopyjfmyandroidapp.theme.AppTheme
 import com.example.nopyjfmyandroidapp.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -89,10 +89,10 @@ private fun HomeContent(
     ) {
         LazyColumn {
 
-            val items = viewModel.state.value.getItems()
+            val homeItems = viewModel.getItems()
 
-            items(items.size) { index ->
-                HomeItem(items[index])
+            items(homeItems.size) { index ->
+                HomeItem(homeItems[index])
             }
 
             item {
