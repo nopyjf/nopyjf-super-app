@@ -7,4 +7,7 @@ sealed class HomeAction(
 ) {
     object Idle : HomeAction()
     class Success(data: HomeDisplay) : HomeAction(data)
+    class AddItemSuccess(data: HomeDisplay) : HomeAction(data)
+
+    fun getItems() = data.items
 }

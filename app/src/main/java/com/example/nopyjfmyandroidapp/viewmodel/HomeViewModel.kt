@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,9 +18,9 @@ class HomeViewModel @Inject constructor() : ViewModel() {
 
     val state: StateFlow<HomeAction> = _state.asStateFlow()
 
-    fun getItems() {
+    init {
         val data = HomeDisplay(
-            items = listOf(
+            items = arrayListOf(
                 HomeItemDisplay(
                     title = "Kao Mun Gai",
                     proteinWeight = 10.0,
@@ -36,5 +37,13 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         )
 
         _state.value = HomeAction.Success(data = data)
+    }
+
+    fun addItem(item: HomeItemDisplay) {
+        // Add new item into list
+        _state.update {
+            it.getItems().add(item)
+            HomeAction.AddItemSuccess(data = it.data)
+        }
     }
 }

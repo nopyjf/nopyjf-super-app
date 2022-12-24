@@ -48,22 +48,20 @@ private fun HomeScreen(
     viewModel: HomeViewModel = viewModel()
 ) {
     val action = viewModel.state.collectAsState()
-    viewModel.getItems()
 
     AppTheme {
         Scaffold(
             topBar = { HomeTopAppBar() }
         ) { padding ->
             when (action.value) {
-                is HomeAction.Success -> {
-                    val items = action.value.data.items
-                    HomeContent(padding, items)
+                is HomeAction.Success,
+                is HomeAction.AddItemSuccess -> {
+                    HomeContent(padding, viewModel)
                 }
                 is HomeAction.Idle -> {
                     CircularProgressIndicator()
                 }
             }
-
         }
     }
 }
@@ -81,7 +79,7 @@ private fun HomeTopAppBar() {
 @Composable
 private fun HomeContent(
     padding: PaddingValues,
-    items: List<HomeItemDisplay>,
+    viewModel: HomeViewModel,
 ) {
     Surface(
         modifier = Modifier
@@ -90,10 +88,16 @@ private fun HomeContent(
             .padding(8.dp)
     ) {
         LazyColumn {
+
+            val items = viewModel.state.value.getItems()
+
             items(items.size) { index ->
                 HomeItem(items[index])
             }
-            item { HomeAddButton() }
+
+            item {
+                HomeAddButton(viewModel)
+            }
         }
     }
 }
@@ -112,10 +116,12 @@ private fun HomeItem(
 }
 
 @Composable
-private fun HomeAddButton() {
+private fun HomeAddButton(viewModel: HomeViewModel) {
     Button(
         onClick = {
-            // do nothing
+            viewModel.addItem(
+                HomeItemDisplay(title = "Rice", proteinWeight = 0.0)
+            )
         },
         modifier = Modifier
             .fillMaxWidth()

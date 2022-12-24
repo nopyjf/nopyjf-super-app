@@ -1,7 +1,7 @@
 package com.example.nopyjfmyandroidapp.model
 
 data class HomeDisplay(
-    val items: List<HomeItemDisplay> = listOf()
+    val items: ArrayList<HomeItemDisplay> = arrayListOf()
 )
 
 data class HomeItemDisplay(
