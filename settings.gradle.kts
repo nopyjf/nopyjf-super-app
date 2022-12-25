@@ -14,4 +14,14 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "NopyJF My Android App"
+
+// Core
 include(":app")
+include(":core")
+include(":model")
+
+// Service
+include(":service-nutrients")
+
+//Feature
+include(":feature-nutrients")

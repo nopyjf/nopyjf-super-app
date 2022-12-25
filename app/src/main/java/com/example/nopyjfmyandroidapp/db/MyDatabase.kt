@@ -4,23 +4,24 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.nopyjfmyandroidapp.dao.HomeDao
-import com.example.nopyjfmyandroidapp.entity.HomeItemEntity
+import com.example.model.nutrient.entity.NutrientItemEntity
+import com.example.service_nutrients.dao.NutrientDao
 
 @Database(
     entities = [
-        HomeItemEntity::class
+        NutrientItemEntity::class
     ],
     version = 1,
 )
 abstract class MyDatabase : RoomDatabase() {
-    abstract fun homeDao(): HomeDao
+
+    abstract fun nutrientDao(): NutrientDao
 
     companion object {
         @Volatile
         private var instance: MyDatabase? = null
 
-        private const val DB_NAME = "nopyjf-android-app-database"
+        private const val DB_NAME = "nopyjf-android-app-database.db"
 
         operator fun invoke(context: Context) {
             instance ?: synchronized(this) {
