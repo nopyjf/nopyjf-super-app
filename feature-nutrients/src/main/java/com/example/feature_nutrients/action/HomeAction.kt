@@ -2,6 +2,7 @@ package com.example.feature_nutrients.action
 
 import com.example.model.nutrient.display.NutrientItemDisplay
 
+
 sealed class HomeAction(
     val items: ArrayList<NutrientItemDisplay> = arrayListOf()
 ) {

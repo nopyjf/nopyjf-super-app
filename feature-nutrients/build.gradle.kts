@@ -68,5 +68,5 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":model"))
 
-    api(project(":service-nutrients"))
+    implementation(project(":service-nutrients"))
 }

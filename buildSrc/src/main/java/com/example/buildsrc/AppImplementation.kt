@@ -23,6 +23,7 @@ object CoreImplementation : LibImplementation {
         AppLib.COMPOSE_ACTIVITIES,
         AppLib.COMPOSE_VIEWMODEL,
         AppLib.HILT_ANDROID,
+        AppLib.HILT_NAVIGATION_COMPOSE,
         AppLib.ROOM,
         AppLib.ROOM_COROUTINE,
     )
@@ -57,6 +58,7 @@ object FeatureImplementation : LibImplementation {
         AppLib.COMPOSE_ACTIVITIES,
         AppLib.COMPOSE_VIEWMODEL,
         AppLib.HILT_ANDROID,
+        AppLib.HILT_NAVIGATION_COMPOSE,
     )
 
     override val UNIT_TEST = listOf(
@@ -79,6 +81,7 @@ object ServiceImplementation : LibImplementation {
 
     override val LIBS = listOf(
         AppLib.HILT_ANDROID,
+        AppLib.HILT_NAVIGATION_COMPOSE,
         AppLib.ROOM,
         AppLib.ROOM_COROUTINE,
     )
@@ -115,6 +118,7 @@ object AppImplementation : LibImplementation, InstrumentImplementation {
         AppLib.COMPOSE_VIEWMODEL,
         AppLib.ROOM,
         AppLib.HILT_ANDROID,
+        AppLib.HILT_NAVIGATION_COMPOSE,
     )
 
     override val UNIT_TEST = listOf(

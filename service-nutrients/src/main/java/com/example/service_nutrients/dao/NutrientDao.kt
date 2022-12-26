@@ -7,5 +7,5 @@ import com.example.model.nutrient.entity.NutrientItemEntity
 @Dao
 interface NutrientDao {
     @Query("SELECT * FROM nutrients")
-    fun getNutrients(): List<NutrientItemEntity>
+    suspend fun getNutrients(): List<NutrientItemEntity>
 }

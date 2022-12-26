@@ -25,6 +25,8 @@ object AppLib {
     const val HILT_ANDROID = "com.google.dagger:hilt-android:${AppVersion.HILT_ANDROID_VERSION}"
     const val HILT_ANDROID_COMPILER =
         "com.google.dagger:hilt-android-compiler:${AppVersion.HILT_ANDROID_VERSION}"
+    const val HILT_NAVIGATION_COMPOSE =
+        "androidx.hilt:hilt-navigation-compose:${AppVersion.HILT_NAVIGATION_COMPOSE_VERSION}"
 
     // Room
     const val ROOM = "androidx.room:room-runtime:${AppVersion.ROOM_VERSION}"

@@ -10,5 +10,6 @@ object AppVersion {
     const val COMPOSE_ACTIVITIES_VERSION = "1.5.1"
     const val COMPOSE_VIEWMODEL_VERSION = "2.5.1"
     const val HILT_ANDROID_VERSION = "2.44"
+    const val HILT_NAVIGATION_COMPOSE_VERSION = "1.0.0"
     const val ROOM_VERSION = "2.4.3"
 }
