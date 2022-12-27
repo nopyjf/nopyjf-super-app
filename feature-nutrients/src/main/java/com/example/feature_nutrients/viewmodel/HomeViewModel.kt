@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.feature_nutrients.action.HomeAction
 import com.example.model.nutrient.display.NutrientItemDisplay
+import com.example.model.nutrient.entity.transformDisplay
 import com.example.model.nutrient.request.NutrientItemRequest
 import com.example.model.nutrient.request.transformDisplay
+import com.example.model.nutrient.request.transformEntity
 import com.example.service_nutrients.repo.NutrientRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,10 +34,17 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun addItem(item: NutrientItemRequest) {
-        _state.update {
-            it.items.add(item.transformDisplay())
-            HomeAction.AddItemSuccess(items = it.items)
+    fun addItem(request: NutrientItemRequest) {
+        viewModelScope.launch {
+            _state.update {
+                try {
+                    val item = repo.insertNutrient(request)
+                    it.items.add(item.transformDisplay())
+                    HomeAction.AddItemSuccess(items = it.items)
+                } catch (e: Exception) {
+                    HomeAction.AddItemFailed(e)
+                }
+            }
         }
     }
 

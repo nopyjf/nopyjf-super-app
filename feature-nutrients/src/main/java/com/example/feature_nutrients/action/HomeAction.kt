@@ -15,4 +15,8 @@ sealed class HomeAction(
     class AddItemSuccess(
         items: ArrayList<NutrientItemDisplay>
     ) : HomeAction(items)
+
+    class AddItemFailed(
+        e: Throwable
+    ) : HomeAction()
 }

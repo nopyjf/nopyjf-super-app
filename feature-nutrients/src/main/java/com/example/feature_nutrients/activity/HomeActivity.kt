@@ -63,6 +63,9 @@ private fun HomeScreen(
                 is HomeAction.Idle -> {
                     CircularProgressIndicator()
                 }
+                is HomeAction.AddItemFailed -> {
+                    // Display Error
+                }
             }
         }
     }
