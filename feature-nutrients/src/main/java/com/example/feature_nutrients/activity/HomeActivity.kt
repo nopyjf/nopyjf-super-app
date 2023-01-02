@@ -1,6 +1,5 @@
 package com.example.feature_nutrients.activity
 
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,10 +21,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.core.theme.AppTheme
 import com.example.feature_nutrients.action.HomeAction
 import com.example.feature_nutrients.viewmodel.HomeViewModel
@@ -60,9 +57,11 @@ private fun HomeScreen(
                 is HomeAction.AddItemSuccess -> {
                     HomeContent(padding, viewModel)
                 }
+
                 is HomeAction.Idle -> {
                     CircularProgressIndicator()
                 }
+
                 is HomeAction.AddItemFailed -> {
                     // Display Error
                 }
@@ -101,7 +100,9 @@ private fun HomeContent(
             }
 
             item {
-                HomeAddButton(viewModel)
+                HomeAddButton { request ->
+                    viewModel.addItem(request)
+                }
             }
         }
     }
@@ -121,11 +122,16 @@ private fun HomeItem(
 }
 
 @Composable
-private fun HomeAddButton(viewModel: HomeViewModel) {
+private fun HomeAddButton(
+    addItem: (NutrientItemRequest) -> Unit,
+) {
     Button(
         onClick = {
-            val request = NutrientItemRequest(title = "Rice", proteinWeight = 0.0)
-            viewModel.addItem(request)
+            val request = NutrientItemRequest(
+                title = "Rice",
+                proteinWeight = 0.0,
+            )
+            addItem(request)
         },
         modifier = Modifier
             .fillMaxWidth()
@@ -133,10 +139,4 @@ private fun HomeAddButton(viewModel: HomeViewModel) {
     ) {
         Text(text = "Add")
     }
-}
-
-@Composable
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-fun PreviewScreen() {
-    HomeScreen()
 }
