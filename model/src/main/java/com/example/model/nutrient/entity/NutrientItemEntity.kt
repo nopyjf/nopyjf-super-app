@@ -8,14 +8,13 @@ import com.example.model.nutrient.display.NutrientItemDisplay
 
 @Entity(tableName = "nutrients")
 data class NutrientItemEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = -1,
+    @PrimaryKey(autoGenerate = true) val id: Int? = null,
     @ColumnInfo(name = "title") val title: String = "",
     @ColumnInfo(name = "protein_weight") val proteinWeight: Double = 0.0,
 )
 
 fun NutrientItemEntity.transformDisplay(): NutrientItemDisplay {
     return NutrientItemDisplay(
-        id = this.id,
         title = this.title,
         proteinWeight = this.proteinWeight
     )
